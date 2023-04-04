@@ -1,0 +1,14 @@
+lane :unit_tests do
+  desc "Running Unit Tests for scheme TorchTests"
+  scan(
+    scheme: 'TorchTests',                                   
+    skip_detect_devices: true,       
+    sdk: 'iphoneos',             
+    buildlog_path: "./fastlane/fastlane-buildlog",
+    configuration: 'Debug',
+    derived_data_path: "./DerivedData",
+    devices: ["iPhone 14"],
+    code_coverage: true
+  )
+end
+
