@@ -1,0 +1,19 @@
+name: Build and test
+on:
+  pull_request:
+    branches: [ "develop", "main" ]
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Update bundler
+        run: bundle update
+        
+      - name: Run unit tests
+        run: bundle exec fastlane unit_tests
+        
+        env:
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
