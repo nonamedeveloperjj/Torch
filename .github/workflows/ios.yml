@@ -18,7 +18,7 @@ jobs:
         run: bundle install
         
       - name: Run unit tests
-        run: bundle exec fastlane runTests
+        run: bundle exec fastlane runTestsLane
         
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
