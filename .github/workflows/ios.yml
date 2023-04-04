@@ -8,14 +8,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        
-      - name: Ruby setup
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.0' # Not needed with a .ruby-version file
           
-      - name: Install bundler
-        run: bundle install
+      - name: Update bundler
+        run: bundle update
         
       - name: Run unit tests
         run: bundle exec fastlane runTestsLane
