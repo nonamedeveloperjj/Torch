@@ -13,6 +13,9 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.0' # Not needed with a .ruby-version file
+          
+      - name: Install bundler
+        run: bundle install
         
       - name: Run unit tests
         run: bundle exec fastlane runTests
