@@ -9,6 +9,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         
+      - name: Ruby setup
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0' # Not needed with a .ruby-version file
+        
       - name: Update bundler
         run: bundle update
         
