@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A32161629DEB4AE00BC0423 /* Timeline in Frameworks */ = {isa = PBXBuildFile; productRef = 5A32161529DEB4AE00BC0423 /* Timeline */; };
 		5A8CF7CD29DC1C4F00BE3D59 /* Torch.Network in Frameworks */ = {isa = PBXBuildFile; productRef = 5A8CF7CC29DC1C4F00BE3D59 /* Torch.Network */; };
 		5AEAFE6D29DB4AF800408886 /* TorchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEAFE6C29DB4AF800408886 /* TorchApp.swift */; };
 		5AEAFE6F29DB4AF800408886 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEAFE6E29DB4AF800408886 /* ContentView.swift */; };
@@ -54,6 +55,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A8CF7CD29DC1C4F00BE3D59 /* Torch.Network in Frameworks */,
+				5A32161629DEB4AE00BC0423 /* Timeline in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +76,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5A32160D29DD8CBE00BC0423 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5AEAFE6029DB4AF800408886 = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +91,7 @@
 				5AEAFE8629DB4AF900408886 /* TorchUITests */,
 				5A32160C29DD88DC00BC0423 /* Timeline */,
 				5AEAFE6A29DB4AF800408886 /* Products */,
+				5A32160D29DD8CBE00BC0423 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -149,6 +159,7 @@
 			name = Torch;
 			packageProductDependencies = (
 				5A8CF7CC29DC1C4F00BE3D59 /* Torch.Network */,
+				5A32161529DEB4AE00BC0423 /* Timeline */,
 			);
 			productName = Torch;
 			productReference = 5AEAFE6929DB4AF800408886 /* Torch.app */;
@@ -435,6 +446,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -442,9 +454,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.makarenko.Torch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -464,6 +479,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -471,9 +487,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.makarenko.Torch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -606,6 +625,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5A32161529DEB4AE00BC0423 /* Timeline */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Timeline;
+		};
 		5A8CF7CC29DC1C4F00BE3D59 /* Torch.Network */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5A8CF7CB29DC1C4F00BE3D59 /* XCRemoteSwiftPackageReference "Torch.Network" */;
