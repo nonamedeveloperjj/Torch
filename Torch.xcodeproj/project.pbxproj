@@ -35,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5A32160C29DD88DC00BC0423 /* Timeline */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Timeline; sourceTree = "<group>"; };
 		5AEAFE6929DB4AF800408886 /* Torch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Torch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AEAFE6C29DB4AF800408886 /* TorchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorchApp.swift; sourceTree = "<group>"; };
 		5AEAFE6E29DB4AF800408886 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -79,6 +80,7 @@
 				5AEAFE6B29DB4AF800408886 /* Torch */,
 				5AEAFE7C29DB4AF900408886 /* TorchTests */,
 				5AEAFE8629DB4AF900408886 /* TorchUITests */,
+				5A32160C29DD88DC00BC0423 /* Timeline */,
 				5AEAFE6A29DB4AF800408886 /* Products */,
 			);
 			sourceTree = "<group>";
