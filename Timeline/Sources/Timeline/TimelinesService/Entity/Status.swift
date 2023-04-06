@@ -15,7 +15,7 @@ struct Status: Decodable {
     let uri: String
     
     /// The date when this status was created.
-    let createdAt: Date
+    let createdAt: String
     
     /// The account that authored this status.
     let account: Account
@@ -99,7 +99,7 @@ struct Status: Decodable {
     let pinned: Bool?
     
     /// If the current token has an authorized user: The filter and keywords that matched this status.
-    let filtered: [FilterResult]
+    let filtered: [FilterResult]?
 }
 
 extension Status {

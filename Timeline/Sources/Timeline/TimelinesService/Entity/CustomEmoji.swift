@@ -9,7 +9,7 @@ import Foundation
 
 struct CustomEmoji: Decodable {
     /// The name of the custom emoji.
-    let shortCode: String
+    let shortcode: String
     
     /// A link to the custom emoji.
     let url: String
@@ -21,15 +21,15 @@ struct CustomEmoji: Decodable {
     let visibleInPicker: Bool
     
     /// Used for sorting custom emoji in the picker.
-    let category: String
+    let category: String?
 }
 
 extension CustomEmoji {
     enum CodingKeys: String, CodingKey {
-        case shortCode = "short_code"
+        case shortcode
         case url
         case staticUrl = "static_url"
         case visibleInPicker = "visible_in_picker"
-        case category = "category"
+        case category
     }
 }

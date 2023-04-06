@@ -27,7 +27,7 @@ struct MediaAttachment: Decodable {
 //    let meta: Hash
     
     /// Alternate text that describes what is in the media attachment, to be used for the visually impaired or when media attachments do not load.
-    let descriptionString: String
+    let descriptionString: String?
     
     /// A hash computed by the BlurHash algorithm, for generating colorful preview thumbnails when media has not been downloaded yet.
     let blurhash: String

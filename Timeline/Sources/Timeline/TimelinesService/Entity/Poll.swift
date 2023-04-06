@@ -12,7 +12,7 @@ struct Poll: Decodable {
     let id: String
     
     /// When the poll ends.
-    let expiresAt: Date?
+    let expiresAt: String?
     
     /// Is the poll currently expired?
     let expired: Bool
