@@ -12,12 +12,14 @@ let package = Package(
             targets: ["Timeline"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/nonamedeveloperjj/Torch.Network", from: "2.0.0")
+        .package(url: "https://github.com/nonamedeveloperjj/TorchNetwork", from: "3.0.0")
     ],
     targets: [
         .target(
             name: "Timeline",
-            dependencies: []),
+            dependencies: [
+                .product(name: "TorchNetwork", package: "TorchNetwork")
+            ]),
         .testTarget(
             name: "TimelineTests",
             dependencies: ["Timeline"]),

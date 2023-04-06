@@ -1,12 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "torch.network",
+      "identity" : "torchnetwork",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/nonamedeveloperjj/Torch.Network.git",
+      "location" : "https://github.com/nonamedeveloperjj/TorchNetwork",
       "state" : {
-        "revision" : "c06e5fd4c32732a68ebb0175f4f67b6ef3bf4930",
-        "version" : "2.0.0"
+        "branch" : "main",
+        "revision" : "76aa159344f716f143e2088410007957f682a203"
       }
     }
   ],

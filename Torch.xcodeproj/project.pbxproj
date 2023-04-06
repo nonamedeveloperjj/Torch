@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5A32161629DEB4AE00BC0423 /* Timeline in Frameworks */ = {isa = PBXBuildFile; productRef = 5A32161529DEB4AE00BC0423 /* Timeline */; };
-		5A32161929DEB5EB00BC0423 /* Torch.Network in Frameworks */ = {isa = PBXBuildFile; productRef = 5A32161829DEB5EB00BC0423 /* Torch.Network */; };
+		5A84AD5529DF15280036BAC2 /* TorchNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = 5A84AD5429DF15280036BAC2 /* TorchNetwork */; };
 		5AEAFE6D29DB4AF800408886 /* TorchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEAFE6C29DB4AF800408886 /* TorchApp.swift */; };
 		5AEAFE6F29DB4AF800408886 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEAFE6E29DB4AF800408886 /* ContentView.swift */; };
 		5AEAFE7129DB4AF900408886 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AEAFE7029DB4AF900408886 /* Assets.xcassets */; };
@@ -36,7 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5A32160C29DD88DC00BC0423 /* Timeline */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Timeline; sourceTree = "<group>"; };
+		5AB41BD629DF2D570036153D /* Timeline */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Timeline; sourceTree = "<group>"; };
 		5AEAFE6929DB4AF800408886 /* Torch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Torch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AEAFE6C29DB4AF800408886 /* TorchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorchApp.swift; sourceTree = "<group>"; };
 		5AEAFE6E29DB4AF800408886 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,8 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A32161629DEB4AE00BC0423 /* Timeline in Frameworks */,
-				5A32161929DEB5EB00BC0423 /* Torch.Network in Frameworks */,
+				5A84AD5529DF15280036BAC2 /* TorchNetwork in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,15 +81,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5AB41BD529DF2D570036153D /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				5AB41BD629DF2D570036153D /* Timeline */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 		5AEAFE6029DB4AF800408886 = {
 			isa = PBXGroup;
 			children = (
+				5AB41BD529DF2D570036153D /* Packages */,
 				5AEAFE6B29DB4AF800408886 /* Torch */,
 				5AEAFE7C29DB4AF900408886 /* TorchTests */,
 				5AEAFE8629DB4AF900408886 /* TorchUITests */,
 				5AEAFE6A29DB4AF800408886 /* Products */,
 				5A32160D29DD8CBE00BC0423 /* Frameworks */,
-				5A32160C29DD88DC00BC0423 /* Timeline */,
 			);
 			sourceTree = "<group>";
 		};
@@ -158,8 +164,7 @@
 			);
 			name = Torch;
 			packageProductDependencies = (
-				5A32161529DEB4AE00BC0423 /* Timeline */,
-				5A32161829DEB5EB00BC0423 /* Torch.Network */,
+				5A84AD5429DF15280036BAC2 /* TorchNetwork */,
 			);
 			productName = Torch;
 			productReference = 5AEAFE6929DB4AF800408886 /* Torch.app */;
@@ -234,7 +239,7 @@
 			);
 			mainGroup = 5AEAFE6029DB4AF800408886;
 			packageReferences = (
-				5A32161729DEB5EB00BC0423 /* XCRemoteSwiftPackageReference "Torch.Network" */,
+				5A84AD5329DF15280036BAC2 /* XCRemoteSwiftPackageReference "TorchNetwork" */,
 			);
 			productRefGroup = 5AEAFE6A29DB4AF800408886 /* Products */;
 			projectDirPath = "";
@@ -614,25 +619,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		5A32161729DEB5EB00BC0423 /* XCRemoteSwiftPackageReference "Torch.Network" */ = {
+		5A84AD5329DF15280036BAC2 /* XCRemoteSwiftPackageReference "TorchNetwork" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/nonamedeveloperjj/Torch.Network.git";
+			repositoryURL = "https://github.com/nonamedeveloperjj/TorchNetwork";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		5A32161529DEB4AE00BC0423 /* Timeline */ = {
+		5A84AD5429DF15280036BAC2 /* TorchNetwork */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Timeline;
-		};
-		5A32161829DEB5EB00BC0423 /* Torch.Network */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5A32161729DEB5EB00BC0423 /* XCRemoteSwiftPackageReference "Torch.Network" */;
-			productName = Torch.Network;
+			package = 5A84AD5329DF15280036BAC2 /* XCRemoteSwiftPackageReference "TorchNetwork" */;
+			productName = TorchNetwork;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
