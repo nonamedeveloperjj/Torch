@@ -89,9 +89,9 @@
 				5AEAFE6B29DB4AF800408886 /* Torch */,
 				5AEAFE7C29DB4AF900408886 /* TorchTests */,
 				5AEAFE8629DB4AF900408886 /* TorchUITests */,
-				5A32160C29DD88DC00BC0423 /* Timeline */,
 				5AEAFE6A29DB4AF800408886 /* Products */,
 				5A32160D29DD8CBE00BC0423 /* Frameworks */,
+				5A32160C29DD88DC00BC0423 /* Timeline */,
 			);
 			sourceTree = "<group>";
 		};
