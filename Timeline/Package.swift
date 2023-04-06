@@ -12,7 +12,7 @@ let package = Package(
             targets: ["Timeline"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/nonamedeveloperjj/Torch.Network", from: "1.0.0")
+        .package(url: "https://github.com/nonamedeveloperjj/Torch.Network", from: "2.0.0")
     ],
     targets: [
         .target(

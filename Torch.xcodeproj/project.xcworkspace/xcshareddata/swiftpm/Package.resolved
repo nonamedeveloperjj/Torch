@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/nonamedeveloperjj/Torch.Network.git",
       "state" : {
-        "revision" : "8cc0feeb709819e6c3f931e528d20e4052f825a4",
-        "version" : "1.0.0"
+        "revision" : "c06e5fd4c32732a68ebb0175f4f67b6ef3bf4930",
+        "version" : "2.0.0"
       }
     }
   ],
