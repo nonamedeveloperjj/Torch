@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5A84AD5529DF15280036BAC2 /* TorchNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = 5A84AD5429DF15280036BAC2 /* TorchNetwork */; };
+		5AB41BD829DF38ED0036153D /* Timeline in Frameworks */ = {isa = PBXBuildFile; productRef = 5AB41BD729DF38ED0036153D /* Timeline */; };
 		5AEAFE6D29DB4AF800408886 /* TorchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEAFE6C29DB4AF800408886 /* TorchApp.swift */; };
 		5AEAFE6F29DB4AF800408886 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEAFE6E29DB4AF800408886 /* ContentView.swift */; };
 		5AEAFE7129DB4AF900408886 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AEAFE7029DB4AF900408886 /* Assets.xcassets */; };
@@ -54,6 +55,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A84AD5529DF15280036BAC2 /* TorchNetwork in Frameworks */,
+				5AB41BD829DF38ED0036153D /* Timeline in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +167,7 @@
 			name = Torch;
 			packageProductDependencies = (
 				5A84AD5429DF15280036BAC2 /* TorchNetwork */,
+				5AB41BD729DF38ED0036153D /* Timeline */,
 			);
 			productName = Torch;
 			productReference = 5AEAFE6929DB4AF800408886 /* Torch.app */;
@@ -634,6 +637,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5A84AD5329DF15280036BAC2 /* XCRemoteSwiftPackageReference "TorchNetwork" */;
 			productName = TorchNetwork;
+		};
+		5AB41BD729DF38ED0036153D /* Timeline */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Timeline;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

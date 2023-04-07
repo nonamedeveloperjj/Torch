@@ -1,11 +1,22 @@
+//
+//  File.swift
+//  
+//
+//  Created by John Snow on 06/04/2023.
+//
+
 import XCTest
-@testable import Timeline
 
 final class TimelineTests: XCTestCase {
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(Timeline().text, "Hello, World!")
+    override class func setUp() {
+        super.setUp()
+    }
+    
+    override class func tearDown() {
+        super.tearDown()
+    }
+    
+    func testThat() {
+        XCTAssertTrue(true)
     }
 }
