@@ -12,12 +12,15 @@ protocol TimelineListViewModelProtocol: AnyObject, ObservableObject {
 }
 
 final class TimelineListViewModel: TimelineListViewModelProtocol {
-    @Published var statuses: [Status] = []
+    @Published var rowModels: [TimelineStatusContainerView.Model] = []
+    private var statuses: [Status] = []
 
     private let timelineService: TimelineServiceProtocol
+    private let rowsDirector: TimelineRowModelsDirectorProtocol
 
-    init(timelineService: TimelineServiceProtocol) {
+    init(timelineService: TimelineServiceProtocol, rowsDirector: TimelineRowModelsDirectorProtocol) {
         self.timelineService = timelineService
+        self.rowsDirector = rowsDirector
     }
 
     func fetchPublicTimelines() async throws {
@@ -25,7 +28,10 @@ final class TimelineListViewModel: TimelineListViewModelProtocol {
 
         switch result {
         case let .success(statuses):
-            self.statuses = statuses
+            DispatchQueue.main.async {
+                self.statuses = statuses
+                self.rowModels = self.rowsDirector.constructRowModels(from: statuses)                
+            }
         case let .failure(error):
             print(error)
         }

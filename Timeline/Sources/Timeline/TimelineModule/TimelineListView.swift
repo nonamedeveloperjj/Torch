@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct TimelineListView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct TimelineView_Previews: PreviewProvider {
-    static var previews: some View {
-        TimelineListView().previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro"))
+public struct TimelineListView: View {
+    @ObservedObject var viewModel: TimelineListViewModel
+    
+    public var body: some View {
+        List(viewModel.rowModels, id: \.id) { rowModel in
+            TimelineStatusContainerView(model: rowModel)
+        }.task {
+            try? await viewModel.fetchPublicTimelines()
+        }.listStyle(.plain)
     }
 }

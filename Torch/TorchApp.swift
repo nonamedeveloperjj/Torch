@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import Timeline
 
 @main
 struct TorchApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TimelineListAssembly().assemble()
         }
     }
 }

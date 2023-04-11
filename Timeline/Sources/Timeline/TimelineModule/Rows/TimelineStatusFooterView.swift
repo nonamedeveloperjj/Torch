@@ -15,8 +15,10 @@ struct TimelineStatusFooterView: View {
             Button {
                 
             } label: {
-                image(for: .reply)
-                Text(String(model.repliesCount))
+                HStack {
+                    image(for: .reply)
+                    Text(String(model.repliesCount))
+                }
             }.tint(.primary)
             
             Spacer()
@@ -24,8 +26,10 @@ struct TimelineStatusFooterView: View {
             Button {
                 
             } label: {
-                image(for: .reblog(isReblogged: model.isReblogged))
-                Text(String(model.reblogsCount))
+                HStack {
+                    image(for: .reblog(isReblogged: model.isReblogged))
+                    Text(String(model.reblogsCount))
+                }
             }.tint(.primary)
             
             Spacer()
@@ -33,8 +37,10 @@ struct TimelineStatusFooterView: View {
             Button {
                 
             } label: {
-                image(for: .favourite(isFavourited: model.isFavourited))
-                Text(String(model.favouritesCount))
+                HStack {
+                    image(for: .favourite(isFavourited: model.isFavourited))
+                    Text(String(model.favouritesCount))
+                }
             }.tint(.primary)
             
             Spacer()
@@ -53,7 +59,6 @@ struct TimelineStatusFooterView: View {
                 image(for: .share)
             }.tint(.primary)
         }
-        .padding(.horizontal, 16.0)
     }
     
     init(model: Model) {
@@ -92,20 +97,22 @@ extension TimelineStatusFooterView {
             case bookmark(isBookmarked: Bool)
             case share
         }
+        
+        static let stubData = TimelineStatusFooterView.Model(
+            repliesCount: 4,
+            reblogsCount: 10,
+            favouritesCount: 36,
+            isReblogged: false,
+            isFavourited: false,
+            isBookmarked: false
+        )
     }
 }
 
 struct TimelineStatusFooterView_Previews: PreviewProvider {
     static var previews: some View {
         TimelineStatusFooterView(
-            model: .init(
-                repliesCount: 4,
-                reblogsCount: 10,
-                favouritesCount: 36,
-                isReblogged: false,
-                isFavourited: false,
-                isBookmarked: false
-            )
+            model: .stubData
         )
     }
 }
