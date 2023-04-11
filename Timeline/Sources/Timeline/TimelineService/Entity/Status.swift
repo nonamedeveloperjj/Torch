@@ -15,7 +15,7 @@ struct Status: Decodable {
     let uri: String
     
     /// The date when this status was created.
-    let createdAt: String
+    let createdAt: Date
     
     /// The account that authored this status.
     let account: Account
@@ -81,7 +81,7 @@ struct Status: Decodable {
     let text: String?
     
     /// Timestamp of when the status was last edited.
-    let editedAt: String?
+    let editedAt: Date?
     
     /// If the current token has an authorized user: Have you favourited this status?
     let favourited: Bool?
@@ -145,6 +145,58 @@ extension Status {
         
         /// A link to the hashtag on the instance.
         let url: String
+    }
+}
+
+extension Status {
+    init(from decoder: Decoder) throws {
+        let dateFormatter = ISO8601DateFormatter()
+        dateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        let containter = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try containter.decode(String.self, forKey: .id)
+        self.uri = try containter.decode(String.self, forKey: .uri)
+        
+        let createdAtString = try containter.decode(String.self, forKey: .createdAt)
+        let createdAt = dateFormatter.date(from: createdAtString)
+        guard let createdAt = createdAt else {
+            throw RuntimeError("Failded to map createdAt \(createdAtString) in Status")
+        }
+        self.createdAt = createdAt
+        
+        self.account = try containter.decode(Account.self, forKey: .account)
+        self.content = try containter.decode(String.self, forKey: .content)
+        self.visibility = try containter.decode(Visibility.self, forKey: .visibility)
+        self.sensitive = try containter.decode(Bool.self, forKey: .sensitive)
+        self.spoilerText = try containter.decode(String.self, forKey: .id)
+        self.mediaAttachments = try containter.decode([MediaAttachment].self, forKey: .mediaAttachments)
+        self.application = try? containter.decode(Application.self, forKey: .application)
+        self.mentions = try containter.decode([Mention].self, forKey: .mentions)
+        self.tags = try containter.decode([Tag].self, forKey: .tags)
+        self.emojis = try containter.decode([CustomEmoji].self, forKey: .emojis)
+        self.reblogsCount = try containter.decode(Int.self, forKey: .reblogsCount)
+        self.favouritesCount = try containter.decode(Int.self, forKey: .favouritesCount)
+        self.repliesCount = try containter.decode(Int.self, forKey: .repliesCount)
+        self.url = try? containter.decode(String.self, forKey: .url)
+        self.inReplyToId = try? containter.decode(String.self, forKey: .inReplyToId)
+        self.inReplyToAccountId = try? containter.decode(String.self, forKey: .inReplyToAccountId)
+        self.reblog = try? containter.decode(Box<Status>.self, forKey: .reblog)
+        self.poll = try? containter.decode(Poll.self, forKey: .poll)
+        self.card = try? containter.decode(PreviewCard.self, forKey: .card)
+        self.language = try? containter.decode(String.self, forKey: .language)
+        self.text = try? containter.decode(String.self, forKey: .text)
+        
+        if let editedAtString = try? containter.decode(String.self, forKey: .editedAt) {
+            self.editedAt = dateFormatter.date(from: editedAtString)
+        } else {
+            self.editedAt = nil
+        }
+        
+        self.favourited = try? containter.decode(Bool.self, forKey: .favourited)
+        self.reblogged = try? containter.decode(Bool.self, forKey: .reblogged)
+        self.muted = try? containter.decode(Bool.self, forKey: .muted)
+        self.bookmarked = try? containter.decode(Bool.self, forKey: .bookmarked)
+        self.pinned = try? containter.decode(Bool.self, forKey: .pinned)
+        self.filtered = try? containter.decode([FilterResult].self, forKey: .filtered)
     }
 }
 

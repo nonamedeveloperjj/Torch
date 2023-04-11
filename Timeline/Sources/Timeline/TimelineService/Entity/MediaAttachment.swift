@@ -30,7 +30,7 @@ struct MediaAttachment: Decodable {
     let descriptionString: String?
     
     /// A hash computed by the BlurHash algorithm, for generating colorful preview thumbnails when media has not been downloaded yet.
-    let blurhash: String
+    let blurhash: String?
 }
 
 extension MediaAttachment {

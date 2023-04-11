@@ -9,7 +9,7 @@ import Foundation
 
 struct Poll: Decodable {
     /// The ID of the poll in the database.
-    let id: String
+    let id: String?
     
     /// When the poll ends.
     let expiresAt: String?
