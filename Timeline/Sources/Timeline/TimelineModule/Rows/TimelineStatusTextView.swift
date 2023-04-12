@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftSoup
 
 struct TimelineStatusTextView: View {
     @State private var model: Model

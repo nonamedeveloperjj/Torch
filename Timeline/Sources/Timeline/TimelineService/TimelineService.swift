@@ -8,6 +8,7 @@
 import Foundation
 import TorchNetwork
 
+// sourcery: AutoMockable
 protocol TimelineServiceProtocol: AnyObject {
     func fetchPublicTimelines() async throws -> Result<[Status], Error>
 }

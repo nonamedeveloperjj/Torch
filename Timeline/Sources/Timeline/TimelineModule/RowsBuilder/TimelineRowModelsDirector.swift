@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+// sourcery: AutoMockable
 protocol TimelineRowModelsDirectorProtocol: AnyObject {
     func constructRowModels(from statuses: [Status]) -> [TimelineStatusContainerView.Model]
 }
