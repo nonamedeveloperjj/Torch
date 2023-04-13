@@ -28,9 +28,9 @@ final class TimelineListViewModel: TimelineListViewModelProtocol {
 
         switch result {
         case let .success(statuses):
-            DispatchQueue.main.async {
+            await MainActor.run {
                 self.statuses = statuses
-                self.rowModels = self.rowsDirector.constructRowModels(from: statuses)                
+                self.rowModels = self.rowsDirector.constructRowModels(from: statuses)
             }
         case let .failure(error):
             print(error)

@@ -19,7 +19,8 @@ let package = Package(
             name: "Timeline",
             dependencies: [
                 .product(name: "TorchNetwork", package: "TorchNetwork")
-            ]),
+            ],
+            swiftSettings: [.unsafeFlags(["-enable-testing"])]),
         .testTarget(
             name: "TimelineTests",
             dependencies: ["Timeline"]),

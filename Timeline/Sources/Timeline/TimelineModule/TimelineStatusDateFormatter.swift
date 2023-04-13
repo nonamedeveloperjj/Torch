@@ -7,6 +7,7 @@
 
 import Foundation
 
+// sourcery: AutoMockable
 protocol TimelineStatusDateFormatterProtocol {
     func format(date: Date) -> String
 }
@@ -22,27 +23,28 @@ struct TimelineStatusDateFormatter: TimelineStatusDateFormatterProtocol {
             to: Date()
         )
         
-        let containsSeconds = dateDiff.minute == nil || dateDiff.minute == 0
-        let containsMinutes = dateDiff.hour == nil || dateDiff.hour == 0
-        let containsHours = dateDiff.day == nil || dateDiff.day == 0
-        let containsLessThanAWeek = (dateDiff.day ?? 0) < 7
+        let containsMinutes = dateDiff.minute != nil && dateDiff.minute != 0
+        let containsHours = dateDiff.hour != nil && dateDiff.hour != 0
+        let containsLessThanAWeek = (dateDiff.day ?? 0) < 7 && (dateDiff.day != 0)
+        let containsMoreThatAWeek = dateDiff.day != nil && (dateDiff.day ?? 0) >= 7
         
         let dateFormat: DateFormat
         
-        if containsSeconds {
-            dateFormat = .seconds
-        } else if containsMinutes {
-            dateFormat = .minutes
-        } else if containsHours {
-            dateFormat = .hours
+        if containsMoreThatAWeek {
+            dateFormat = .fullDate
         } else if containsLessThanAWeek {
             dateFormat = .days
+        } else if containsHours {
+            dateFormat = .hours
+        } else if containsMinutes {
+            dateFormat = .minutes
         } else {
-            dateFormat = .fullDate
+            dateFormat = .seconds
         }
         
         dateFormatter.dateFormat = dateFormat.rawValue
-        var stringDate = dateFormatter.string(from: calendar.date(from: dateDiff) ?? Date())
+        let dateToShow = containsMoreThatAWeek ? date : calendar.date(from: dateDiff)
+        var stringDate = dateFormatter.string(from: dateToShow ?? Date())
         
         if dateFormat != .fullDate {
             stringDate.append(dateFormat.rawValue.lowercased())
