@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import SwiftUI
 
+// sourcery: AutoMockable
 protocol TimelineRowModelsBuilderProtocol: AnyObject {
     func buildHeaderComponent(from status: Status)
     func buildTextComponent(from text: String)

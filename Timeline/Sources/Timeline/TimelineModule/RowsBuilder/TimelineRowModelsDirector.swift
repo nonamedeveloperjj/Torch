@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 // sourcery: AutoMockable
 protocol TimelineRowModelsDirectorProtocol: AnyObject {

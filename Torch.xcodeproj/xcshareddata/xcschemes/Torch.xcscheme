@@ -44,10 +44,10 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5AEAFE8229DB4AF900408886"
-               BuildableName = "TorchUITests.xctest"
-               BlueprintName = "TorchUITests"
-               ReferencedContainer = "container:Torch.xcodeproj">
+               BlueprintIdentifier = "TimelineTests"
+               BuildableName = "TimelineTests"
+               BlueprintName = "TimelineTests"
+               ReferencedContainer = "container:Timeline">
             </BuildableReference>
          </TestableReference>
       </Testables>

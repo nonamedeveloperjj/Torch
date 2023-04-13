@@ -82,7 +82,9 @@ struct Account: Decodable {
     
     /// The reported follows of this profile.
     let followingCount: Int
-    
+}
+
+extension Account {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)

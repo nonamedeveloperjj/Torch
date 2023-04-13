@@ -27,6 +27,82 @@ import AppKit
 
 
 
+class TimelineRowModelsBuilderProtocolMock: TimelineRowModelsBuilderProtocol {
+
+    //MARK: - buildHeaderComponent
+
+    var buildHeaderComponentFromCallsCount = 0
+    var buildHeaderComponentFromCalled: Bool {
+        return buildHeaderComponentFromCallsCount > 0
+    }
+    var buildHeaderComponentFromReceivedStatus: Status?
+    var buildHeaderComponentFromReceivedInvocations: [Status] = []
+    var buildHeaderComponentFromClosure: ((Status) -> Void)?
+
+    func buildHeaderComponent(from status: Status) {
+        buildHeaderComponentFromCallsCount += 1
+        buildHeaderComponentFromReceivedStatus = status
+        buildHeaderComponentFromReceivedInvocations.append(status)
+        buildHeaderComponentFromClosure?(status)
+    }
+
+    //MARK: - buildTextComponent
+
+    var buildTextComponentFromCallsCount = 0
+    var buildTextComponentFromCalled: Bool {
+        return buildTextComponentFromCallsCount > 0
+    }
+    var buildTextComponentFromReceivedText: String?
+    var buildTextComponentFromReceivedInvocations: [String] = []
+    var buildTextComponentFromClosure: ((String) -> Void)?
+
+    func buildTextComponent(from text: String) {
+        buildTextComponentFromCallsCount += 1
+        buildTextComponentFromReceivedText = text
+        buildTextComponentFromReceivedInvocations.append(text)
+        buildTextComponentFromClosure?(text)
+    }
+
+    //MARK: - buildFooterComponent
+
+    var buildFooterComponentFromCallsCount = 0
+    var buildFooterComponentFromCalled: Bool {
+        return buildFooterComponentFromCallsCount > 0
+    }
+    var buildFooterComponentFromReceivedStatus: Status?
+    var buildFooterComponentFromReceivedInvocations: [Status] = []
+    var buildFooterComponentFromClosure: ((Status) -> Void)?
+
+    func buildFooterComponent(from status: Status) {
+        buildFooterComponentFromCallsCount += 1
+        buildFooterComponentFromReceivedStatus = status
+        buildFooterComponentFromReceivedInvocations.append(status)
+        buildFooterComponentFromClosure?(status)
+    }
+
+    //MARK: - construct
+
+    var constructIdCallsCount = 0
+    var constructIdCalled: Bool {
+        return constructIdCallsCount > 0
+    }
+    var constructIdReceivedId: String?
+    var constructIdReceivedInvocations: [String] = []
+    var constructIdReturnValue: TimelineStatusContainerView.Model!
+    var constructIdClosure: ((String) -> TimelineStatusContainerView.Model)?
+
+    func construct(id: String) -> TimelineStatusContainerView.Model {
+        constructIdCallsCount += 1
+        constructIdReceivedId = id
+        constructIdReceivedInvocations.append(id)
+        if let constructIdClosure = constructIdClosure {
+            return constructIdClosure(id)
+        } else {
+            return constructIdReturnValue
+        }
+    }
+
+}
 class TimelineRowModelsDirectorProtocolMock: TimelineRowModelsDirectorProtocol {
 
     //MARK: - constructRowModels
@@ -73,6 +149,31 @@ class TimelineServiceProtocolMock: TimelineServiceProtocol {
             return try await fetchPublicTimelinesClosure()
         } else {
             return fetchPublicTimelinesReturnValue
+        }
+    }
+
+}
+class TimelineStatusDateFormatterProtocolMock: TimelineStatusDateFormatterProtocol {
+
+    //MARK: - format
+
+    var formatDateCallsCount = 0
+    var formatDateCalled: Bool {
+        return formatDateCallsCount > 0
+    }
+    var formatDateReceivedDate: Date?
+    var formatDateReceivedInvocations: [Date] = []
+    var formatDateReturnValue: String!
+    var formatDateClosure: ((Date) -> String)?
+
+    func format(date: Date) -> String {
+        formatDateCallsCount += 1
+        formatDateReceivedDate = date
+        formatDateReceivedInvocations.append(date)
+        if let formatDateClosure = formatDateClosure {
+            return formatDateClosure(date)
+        } else {
+            return formatDateReturnValue
         }
     }
 
