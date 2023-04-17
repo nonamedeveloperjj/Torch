@@ -19,6 +19,11 @@ struct TimelineStatusContainerView: View {
                 TimelineStatusTextView(model: textModel)
             }
             
+            // TODO: FIX
+            if let attachmentsModel = model.attachmentsModel, attachmentsModel.first?.type == .image {
+                TimelineStatusAttachmentsContainerView(model: attachmentsModel)
+            }
+            
             TimelineStatusFooterView(model: model.footerModel)
         }
     }
@@ -33,6 +38,7 @@ extension TimelineStatusContainerView {
         let id: String
         let headerModel: TimelineStatusHeaderView.Model
         let textModel: TimelineStatusTextView.Model?
+        let attachmentsModel: [TimelineStatusAttachmentsContainerView.Model]?
         let footerModel: TimelineStatusFooterView.Model
     }
 }
@@ -44,6 +50,7 @@ struct TimelineStatusContainerView_Previews: PreviewProvider {
                 id: "1",
                 headerModel: .stubData,
                 textModel: .stubData,
+                attachmentsModel: [.stubData],
                 footerModel: .stubData
             )
         )

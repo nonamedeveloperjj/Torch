@@ -39,6 +39,21 @@ final class TimelineRowModelsDirectorTests: XCTestCase {
         XCTAssertEqual(builderMock.buildFooterComponentFromCallsCount, statuses.count)
         XCTAssertEqual(builderMock.constructIdCallsCount, statuses.count)
     }
+    
+    func testThatDirectorConstructsModelsWithAttachments() {
+        // given
+        let statuses = [Status.stubData, Status.emptyContentStatus, Status.imageAttachmentsStatus]
+        builderMock.constructIdReturnValue = TestData.containerViewModel
+        
+        // when
+        _ = director.constructRowModels(from: statuses)
+        
+        // then
+        XCTAssertEqual(builderMock.buildHeaderComponentFromCallsCount, statuses.count)
+        XCTAssertEqual(builderMock.buildFooterComponentFromCallsCount, statuses.count)
+        XCTAssertEqual(builderMock.buildAttachmentsComponentFromCallsCount, 1)
+        XCTAssertEqual(builderMock.buildAttachmentsComponentFromReceivedAttachments, statuses.last!.mediaAttachments!)
+    }
 }
 
 private extension TimelineRowModelsDirectorTests {
@@ -47,6 +62,7 @@ private extension TimelineRowModelsDirectorTests {
             id: "id",
             headerModel: .stubData,
             textModel: .stubData,
+            attachmentsModel: [.stubData, .stubData],
             footerModel: .stubData
         )
     }

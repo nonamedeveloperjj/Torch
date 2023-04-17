@@ -63,6 +63,23 @@ class TimelineRowModelsBuilderProtocolMock: TimelineRowModelsBuilderProtocol {
         buildTextComponentFromClosure?(text)
     }
 
+    //MARK: - buildAttachmentsComponent
+
+    var buildAttachmentsComponentFromCallsCount = 0
+    var buildAttachmentsComponentFromCalled: Bool {
+        return buildAttachmentsComponentFromCallsCount > 0
+    }
+    var buildAttachmentsComponentFromReceivedAttachments: [MediaAttachment]?
+    var buildAttachmentsComponentFromReceivedInvocations: [[MediaAttachment]] = []
+    var buildAttachmentsComponentFromClosure: (([MediaAttachment]) -> Void)?
+
+    func buildAttachmentsComponent(from attachments: [MediaAttachment]) {
+        buildAttachmentsComponentFromCallsCount += 1
+        buildAttachmentsComponentFromReceivedAttachments = attachments
+        buildAttachmentsComponentFromReceivedInvocations.append(attachments)
+        buildAttachmentsComponentFromClosure?(attachments)
+    }
+
     //MARK: - buildFooterComponent
 
     var buildFooterComponentFromCallsCount = 0
