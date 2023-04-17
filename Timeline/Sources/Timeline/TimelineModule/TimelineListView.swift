@@ -11,10 +11,14 @@ public struct TimelineListView: View {
     @ObservedObject var viewModel: TimelineListViewModel
     
     public var body: some View {
-        List(viewModel.rowModels, id: \.id) { rowModel in
-            TimelineStatusContainerView(model: rowModel)
-        }.task {
-            try? await viewModel.fetchPublicTimelines()
-        }.listStyle(.plain)
+        NavigationView {
+            List(viewModel.rowModels, id: \.id) { rowModel in
+                TimelineStatusContainerView(model: rowModel)
+            }.task {
+                try? await viewModel.fetchPublicTimelines()
+            }
+            .listStyle(.plain)
+            .navigationBarHidden(false)
+        }
     }
 }

@@ -33,7 +33,7 @@ struct Status: Decodable {
     let spoilerText: String
     
     /// Media that is attached to this status.
-    let mediaAttachments: [MediaAttachment]
+    let mediaAttachments: [MediaAttachment]?
     
     /// The application used to post this status.
     let application: Application?

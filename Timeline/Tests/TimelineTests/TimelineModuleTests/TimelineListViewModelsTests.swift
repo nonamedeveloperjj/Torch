@@ -49,6 +49,7 @@ extension TimelineListViewModelsTests {
             id: "id",
             headerModel: .stubData,
             textModel: .stubData,
+            attachmentsModel: [.stubData, .stubData],
             footerModel: .stubData
         )
     }

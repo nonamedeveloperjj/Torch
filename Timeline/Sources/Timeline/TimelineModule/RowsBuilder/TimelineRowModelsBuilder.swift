@@ -11,6 +11,7 @@ import Foundation
 protocol TimelineRowModelsBuilderProtocol: AnyObject {
     func buildHeaderComponent(from status: Status)
     func buildTextComponent(from text: String)
+    func buildAttachmentsComponent(from attachments: [MediaAttachment])
     func buildFooterComponent(from status: Status)
     func construct(id: String) -> TimelineStatusContainerView.Model
 }
@@ -18,6 +19,7 @@ protocol TimelineRowModelsBuilderProtocol: AnyObject {
 final class TimelineRowModelsBuilder: TimelineRowModelsBuilderProtocol {
     private var headerModel: TimelineStatusHeaderView.Model!
     private var textModel: TimelineStatusTextView.Model?
+    private var attachmentsModel: [TimelineStatusAttachmentsContainerView.Model]?
     private var footerModel: TimelineStatusFooterView.Model!
     private let dateFormatter: TimelineStatusDateFormatterProtocol
     
@@ -42,6 +44,27 @@ final class TimelineRowModelsBuilder: TimelineRowModelsBuilderProtocol {
         }
     }
     
+    func buildAttachmentsComponent(from attachments: [MediaAttachment]) {
+        var attachmentsModel: [TimelineStatusAttachmentsContainerView.Model] = []
+        
+        attachments.forEach {
+            if let url = URL(string: $0.url),
+               let previewUrlString = $0.previewUrl,
+               let previewUrl = URL(string: previewUrlString),
+               let imageMeta = ImageMeta(jsonDictionary: $0.meta) {
+                let attachmentModel = TimelineStatusAttachmentsContainerView.Model(
+                    type: $0.type,
+                    imageMeta: imageMeta,
+                    url: url,
+                    previewUrl: previewUrl
+                )
+                attachmentsModel.append(attachmentModel)
+            }
+        }
+        
+        self.attachmentsModel = attachmentsModel
+    }
+    
     func buildFooterComponent(from status: Status) {
         let footerModel = TimelineStatusFooterView.Model(
             repliesCount: status.repliesCount,
@@ -59,6 +82,7 @@ final class TimelineRowModelsBuilder: TimelineRowModelsBuilderProtocol {
         defer {
             headerModel = nil
             textModel = nil
+            attachmentsModel = nil
             footerModel = nil
         }
         
@@ -66,6 +90,7 @@ final class TimelineRowModelsBuilder: TimelineRowModelsBuilderProtocol {
             id: id,
             headerModel: headerModel,
             textModel: textModel,
+            attachmentsModel: attachmentsModel,
             footerModel: footerModel
         )
     }

@@ -30,6 +30,10 @@ final class TimelineRowModelsDirector: TimelineRowModelsDirectorProtocol {
                 rowsBuilder.buildTextComponent(from: content)
             }
             
+            if let mediaAttachments = status.mediaAttachments, !mediaAttachments.isEmpty {
+                rowsBuilder.buildAttachmentsComponent(from: mediaAttachments)
+            }
+            
             rowsBuilder.buildFooterComponent(from: status)
             
             let rowModel = rowsBuilder.construct(id: status.id)
