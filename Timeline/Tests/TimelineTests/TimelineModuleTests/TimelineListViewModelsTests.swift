@@ -21,24 +21,56 @@ final class TimelineListViewModelsTests: XCTestCase {
     }
     
     override func tearDown() {
-        super.tearDown()
         rowsDirector = nil
         timelineService = nil
         viewModel = nil
+        super.tearDown()
     }
     
     func testViewModelFetchesPublicTimelinesWithSuccess() async throws {
         // given
         rowsDirector.constructRowModelsFromReturnValue = [TestData.containerViewModel, TestData.containerViewModel, TestData.containerViewModel]
-        timelineService.fetchPublicTimelinesReturnValue = .success(TestData.statuses)
+        timelineService.fetchPublicTimelinesMaxIdReturnValue = .success(TestData.statuses)
         
         // when
         try await viewModel.fetchPublicTimelines()
         
         // then
-        XCTAssertEqual(timelineService.fetchPublicTimelinesCallsCount, 1)
+        XCTAssertEqual(timelineService.fetchPublicTimelinesMaxIdCallsCount, 1)
         XCTAssertEqual(rowsDirector.constructRowModelsFromCallsCount, 1)
         XCTAssertEqual(rowsDirector.constructRowModelsFromReceivedStatuses?.count, TestData.statuses.count)
+    }
+    
+    func testViewModelFetchesMoreStatusesWithSuccess() async throws {
+        // given
+        let receivedStatuses = TestData.statuses
+        rowsDirector.constructRowModelsFromReturnValue = [TestData.containerViewModel, TestData.containerViewModel, TestData.containerViewModel]
+        timelineService.fetchPublicTimelinesMaxIdReturnValue = .success(receivedStatuses)
+        try await viewModel.fetchPublicTimelines()
+        
+        // when
+        try await viewModel.fetchMoreStatusesIfNeeded(shownIndex: 2)
+        
+        // then
+        XCTAssertEqual(timelineService.fetchPublicTimelinesMaxIdCallsCount, 2)
+        XCTAssertEqual(timelineService.fetchPublicTimelinesMaxIdReceivedMaxId, receivedStatuses.last!.id)
+        XCTAssertEqual(rowsDirector.constructRowModelsFromCallsCount, 2)
+        XCTAssertEqual(rowsDirector.constructRowModelsFromReceivedStatuses?.count, receivedStatuses.count * 2)
+    }
+
+    func testViewModelDoesNotFetchMoreStatusesWhenIndexNotLast() async throws {
+        // given
+        let receivedStatuses = TestData.statuses
+        rowsDirector.constructRowModelsFromReturnValue = [TestData.containerViewModel, TestData.containerViewModel, TestData.containerViewModel]
+        timelineService.fetchPublicTimelinesMaxIdReturnValue = .success(receivedStatuses)
+        try await viewModel.fetchPublicTimelines()
+        
+        // when
+        try await viewModel.fetchMoreStatusesIfNeeded(shownIndex: 0)
+        
+        // then
+        XCTAssertEqual(timelineService.fetchPublicTimelinesMaxIdCallsCount, 1)
+        XCTAssertEqual(timelineService.fetchPublicTimelinesMaxIdReceivedMaxId, nil)
     }
 }
 
