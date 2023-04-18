@@ -10,7 +10,7 @@ import TorchNetwork
 
 // sourcery: AutoMockable
 protocol TimelineServiceProtocol: AnyObject {
-    func fetchPublicTimelines() async throws -> Result<[Status], Error>
+    func fetchPublicTimelines(maxId: String?) async throws -> Result<[Status], Error>
 }
 
 public final class TimelineService: TimelineServiceProtocol {
@@ -20,13 +20,19 @@ public final class TimelineService: TimelineServiceProtocol {
         self.networkClient = networkClient
     }
 
-    func fetchPublicTimelines() async throws -> Result<[Status], Error> {
+    func fetchPublicTimelines(maxId: String?) async throws -> Result<[Status], Error> {
+        var queryItems: [String: String]? = nil
+        if let maxId = maxId {
+            queryItems = ["maxId": maxId]
+        }
+        
         let requestComponents = RequestComponents(
             scheme: "https",
             host: "mastodon.social",
             path: "/api/v1/timelines/public",
             method: .get,
-            header: ["Content-Type": "application/json"]
+            header: ["Content-Type": "application/json"],
+            queryItems: queryItems
         )
 
         let result = try await networkClient.sendRequest(requestComponents: requestComponents)

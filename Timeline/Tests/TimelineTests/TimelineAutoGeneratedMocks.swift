@@ -149,23 +149,27 @@ class TimelineServiceProtocolMock: TimelineServiceProtocol {
 
     //MARK: - fetchPublicTimelines
 
-    var fetchPublicTimelinesThrowableError: Error?
-    var fetchPublicTimelinesCallsCount = 0
-    var fetchPublicTimelinesCalled: Bool {
-        return fetchPublicTimelinesCallsCount > 0
+    var fetchPublicTimelinesMaxIdThrowableError: Error?
+    var fetchPublicTimelinesMaxIdCallsCount = 0
+    var fetchPublicTimelinesMaxIdCalled: Bool {
+        return fetchPublicTimelinesMaxIdCallsCount > 0
     }
-    var fetchPublicTimelinesReturnValue: Result<[Status], Error>!
-    var fetchPublicTimelinesClosure: (() async throws -> Result<[Status], Error>)?
+    var fetchPublicTimelinesMaxIdReceivedMaxId: String?
+    var fetchPublicTimelinesMaxIdReceivedInvocations: [String?] = []
+    var fetchPublicTimelinesMaxIdReturnValue: Result<[Status], Error>!
+    var fetchPublicTimelinesMaxIdClosure: ((String?) async throws -> Result<[Status], Error>)?
 
-    func fetchPublicTimelines() async throws -> Result<[Status], Error> {
-        if let error = fetchPublicTimelinesThrowableError {
+    func fetchPublicTimelines(maxId: String?) async throws -> Result<[Status], Error> {
+        if let error = fetchPublicTimelinesMaxIdThrowableError {
             throw error
         }
-        fetchPublicTimelinesCallsCount += 1
-        if let fetchPublicTimelinesClosure = fetchPublicTimelinesClosure {
-            return try await fetchPublicTimelinesClosure()
+        fetchPublicTimelinesMaxIdCallsCount += 1
+        fetchPublicTimelinesMaxIdReceivedMaxId = maxId
+        fetchPublicTimelinesMaxIdReceivedInvocations.append(maxId)
+        if let fetchPublicTimelinesMaxIdClosure = fetchPublicTimelinesMaxIdClosure {
+            return try await fetchPublicTimelinesMaxIdClosure(maxId)
         } else {
-            return fetchPublicTimelinesReturnValue
+            return fetchPublicTimelinesMaxIdReturnValue
         }
     }
 
